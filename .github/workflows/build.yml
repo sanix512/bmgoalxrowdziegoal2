@@ -1,4 +1,4 @@
-name: Build and deployx
+name: Build and Deployx
 
 on:
   push:
@@ -11,31 +11,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repository
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2️⃣ Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
-      # 3️⃣ Install ALL dependencies
-      - name: npm install
+      - name: Install dependencies
         run: npm install
 
-      # 4️⃣ Install extra build dependencies manually
-      - name: Install required dev tools
+      - name: Install dev tools
         run: |
           npm install --save-dev javascript-obfuscator@^4.1.1 clean-css-cli@^5.6.0
 
-      # 5️⃣ Run your build script
       - name: Build project
         run: npm run build
 
-      # 6️⃣ Upload dist output
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
