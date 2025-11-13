@@ -1,0 +1,101 @@
+ body {
+    margin: 0;
+    background: transparent;
+    font-family: Arial, sans-serif;
+  }
+
+  .progress-container {
+    position: fixed;
+    top: 341px;            
+    left: 17px;            
+    height: 48px;
+      padding: 0 8px;
+
+     /* keep original rounding */
+      overflow: hidden;
+      clip-path: polygon(0% 0%, 100% 0%, 96% 100%, 0% 100%);
+      background: rgba(255,255,255,0.05); /* glass effect */
+      box-shadow: inset 0 0 25px rgba(0,0,0,1), 0 6px 24px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      text-shadow: 0 0 6px rgba(0,0,0,0.8);
+      z-index: 9999;
+      width: auto;
+      max-width: 90vw;
+      min-width: fit-content;   /* Smooth expansion */
+  }
+
+  .fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    background: linear-gradient(90deg, rgba(255,140,0,0.7), rgba(255,190,80,0.7));
+    z-index: 0;
+    transition: width 1s ease-out;
+  }
+
+  .fill::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 25%;
+    background: linear-gradient(90deg,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0.25),
+        rgba(255, 255, 255, 0));
+    animation: sweep 3s linear infinite;
+    filter: blur(2px);
+  }
+
+  @keyframes sweep {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(400%); }
+  }
+
+   .icon-circle {
+      flex-shrink: 0;
+      width: 78px;   /* width: 68px; height: 68px; */
+      height: 78px;
+      border-radius: 50%;
+    box-sizing: border-box;
+    padding-bottom: 4px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 8px;
+      z-index: 1;
+    }
+
+  .icon-circle img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+  }
+
+  .goal-label {
+    position: relative;
+    z-index: 1;
+    font-size: 26px;
+    white-space: nowrap;
+    margin-right: 42px;
+    display: inline-block;
+    text-align: left;
+    transition: min-width 0.2s ease;
+    min-width: 140px;
+  }
+
+  .end-number {
+    margin-left: auto;
+    margin-right: 6px;
+    position: relative;
+    z-index: 1;
+    font-size: 26px;
+    white-space: nowrap;
+  }
