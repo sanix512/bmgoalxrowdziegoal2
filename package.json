@@ -1,0 +1,22 @@
+{
+  "name": "bmgoalx",
+  "version": "1.0.0",
+  "private": true,
+"scripts": {
+  "obf": "npx javascript-obfuscator src/app.js --output dist/app.js --compact true --control-flow-flattening true --dead-code-injection true --string-array true --string-array-encoding rc4 --string-array-threshold 0.75 --disable-console-output true",
+  "minify-css": "npx cleancss -o dist/style.css src/style.css",
+  "prepare-dist": "mkdir -p dist && cp index.html dist/index.html || true",
+  "remove-maps": "find dist -type f -name '*.map' -delete && sed -i '/sourceMappingURL/d' dist/*.js dist/*.css 2>/dev/null || true",
+  "clean": "rm -rf dist || true",
+  "build": "npm run clean && npm run obf && npm run minify-css && npm run prepare-dist && npm run remove-maps",
+  "start": "node server.js",
+  "dev": "npm run build && npm run start"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "javascript-obfuscator": "^4.1.1",
+    "clean-css-cli": "^5.6.0"
+  }
+}
